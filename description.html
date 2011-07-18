@@ -6,11 +6,11 @@
 	<META NAME="GENERATOR" CONTENT="LibreOffice 3.3  (Linux)">
 	<META NAME="CREATED" CONTENT="0;0">
 	<META NAME="CHANGEDBY" CONTENT="Stanislav Hanzhin">
-	<META NAME="CHANGED" CONTENT="20110718;17245000">
+	<META NAME="CHANGED" CONTENT="20110718;20385200">
 </HEAD>
 <BODY LANG="ru-RU" DIR="LTR">
-<P ALIGN=CENTER STYLE="margin-bottom: 0cm"><FONT COLOR="#0000ff"><FONT FACE="serif">Kickstart/Virt-Install
-image</FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm"><FONT COLOR="#0000ff"><FONT FACE="serif">Kickstart/VirtInstall
+template</FONT></FONT></P>
 <P ALIGN=CENTER STYLE="margin-bottom: 0cm"><FONT COLOR="#0000ff"><FONT FACE="serif">Provisioning
 through kickstart and virt-install script</FONT></FONT></P>
 <P ALIGN=LEFT><FONT COLOR="#0000ff"><FONT FACE="serif">Type:
@@ -26,25 +26,28 @@ virt-install.py and ks.template. Virt-install.py is a script that
 gets parameters for provisioning, and ks.template is a sample
 kickstart template.</FONT></FONT></P>
 <P ALIGN=LEFT STYLE="line-height: 100%"><FONT COLOR="#000000"><FONT FACE="serif">First,
- virt-install.py creates </FONT></FONT>
-</P>
+ virt-install.py creates kickstart file and makes a simple scriptlet
+generating kickstart image of 1440 bytes. Next, virt-install.py runs
+virt-install from python-virtinst package and creates a kvm virtual
+machine that installs itself from a mirror using kickstart.</FONT></FONT></P>
 <P ALIGN=LEFT><FONT COLOR="#0000ff"><FONT FACE="serif">Known issues:</FONT></FONT></P>
-<P ALIGN=LEFT><BR><BR>
-</P>
+<P ALIGN=LEFT><FONT COLOR="#000000"><FONT FACE="serif">#1. Can't add
+more than 1 HDD.</FONT></FONT></P>
+<P ALIGN=LEFT><FONT COLOR="#000000"><FONT FACE="serif">#2. Can't
+provide DNS host during provisioning.</FONT></FONT></P>
+<P ALIGN=LEFT><FONT COLOR="#000000"><FONT FACE="serif">See more and
+report on <A HREF="https://github.com/hanzhinstas/convirt-kvm-ks-template/issues/">github</A>.</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="line-height: 100%"><FONT COLOR="#0000ff"><FONT FACE="serif">Notes:</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="line-height: 100%"><FONT COLOR="#000000"><FONT FACE="serif">Tested
+on CentOS 5.5.</FONT></FONT></P>
 <P ALIGN=LEFT><FONT COLOR="#0000ff"><FONT FACE="serif">Instructions:</FONT></FONT></P>
-<P><FONT COLOR="#000000"><FONT SIZE=2>Start provisioning with the
-template, go to the &quot;Miscellaneous&quot; tab and fill in the
-network configuration for the machine, and some debootstrap-related
-info (mirror address, distribution name...). Press OK and keep an eye
-on the logs (/var/log/convirt/image_store/$IMAGE_NAME/*.log in the
-Xen host where you are provisioning the VM). </FONT></FONT>
-</P>
-<P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT SIZE=2>(Important)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2>
-Created on Convirt 2.0, Xen 3.2.1, Debian Lenny. It may work with
-other software setups and/or versions, your mileage may vary.
-</FONT></FONT><FONT COLOR="#0000ff"><FONT FACE="serif">Contact: </FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2>Marco
-Marongiu &lt; bronto X opera com &gt; (you know how to change this to
-get an email address, don't you?) </FONT></FONT>
+<P ALIGN=LEFT><FONT COLOR="#000000"><FONT SIZE=3><FONT FACE="serif">Install
+template directly to image_store of your convirture installation,
+restart CMS and you will see VirtInstall template in Template
+Library. Right-click on template and select Provision. Provide
+instance name and adjust parameters such as hdd size custom packages
+etc in Template Parameters.</FONT></FONT></FONT></P>
+<P ALIGN=LEFT><BR><BR>
 </P>
 </BODY>
 </HTML>

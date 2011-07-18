@@ -24,12 +24,6 @@ keyutils
 trousers
 fipscheck
 device-mapper-multipath
-SL_enable_serialconsole
-creat_repo
-check_mk-agent
-check_mk-agent-logwatch
-dstat
-sysstat
 $packages_lines
 
 %post --interpreter /bin/bash
