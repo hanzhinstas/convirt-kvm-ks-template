@@ -1,0 +1,46 @@
+
+# Template kickstart file
+
+install
+$mirror_line
+lang en_US.UTF-8
+keyboard us
+$network_lines
+$root_pw_enc
+authconfig --enableshadow --enablemd5
+$repo_lines
+selinux --enforcing
+timezone --utc Europe/Moscow
+bootloader --location=mbr --driveorder=vda
+ignoredisk --drives=vdb
+clearpart --all --drives=vda --initlabel
+autopart
+firewall --enabled --ssh --port=6556:tcp
+poweroff
+%packages
+@base
+@core
+keyutils
+trousers
+fipscheck
+device-mapper-multipath
+SL_enable_serialconsole
+creat_repo
+check_mk-agent
+check_mk-agent-logwatch
+dstat
+sysstat
+$packages_lines
+
+%post --interpreter /bin/bash
+sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+# DO NOT PLACE NOTHING ABOVE THIS LINE! THERE WILL BE DRAGONS!
+mkdir -p /root/.ssh 
+$root_keys_lines
+chmod -R go-rwx /root/.ssh
+chkconfig cups off
+chkconfig portmap off
+chkconfig nfslock off
+chkconfig avahi-daemon off
+$routes_lines
+$postinstall_lines
